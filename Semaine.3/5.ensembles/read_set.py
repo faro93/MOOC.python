@@ -28,5 +28,6 @@ def search_in_set(filename_reference, filename):
 if __name__ == '__main__':
     # s = read_set('ensembles/data/setref1.txt')
     # print(s)
-    t = search_in_set('ensembles/data/setref1.txt', 'ensembles/data/setsample1.txt')
+    t = search_in_set('Semaine.3/ensembles/data/setref1.txt',
+                      'Semaine.3/ensembles/data/setsample1.txt')
     pprint.pprint(t)
