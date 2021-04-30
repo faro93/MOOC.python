@@ -9,9 +9,7 @@ class Fifo:
 
     def outgoing(self):
         try:
-            result = self.fifo[0]
-            del self.fifo[0]
-            return result
+            return self.fifo.pop(0)
         except IndexError:
             return None
 
