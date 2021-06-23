@@ -8,7 +8,7 @@ def taxes(income):
         if reste < 12_500:
             return impot
         elif 12_501 <= reste <= 50_000:
-            reste -= 
+            reste -= 1
 
 if __name__ == '__main__':
     for taxe in (0, 7500, 12500):
