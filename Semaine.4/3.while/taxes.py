@@ -26,4 +26,3 @@ def taxes(income):
 if __name__ == '__main__':
     for montant in (0, 50_000, 12_500, 5_000, 16_500, 30_000, 100_000, 150_000, 200_000, 12_504):
         print(montant, taxes(montant))
-        print()
