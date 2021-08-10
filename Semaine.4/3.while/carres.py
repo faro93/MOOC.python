@@ -9,9 +9,12 @@
 # log(5)~= 0.699 => 5 = 10**0.699
 
 def power(x, n):
-    print(f'x={x}, y={y} ')
-    pass
+    # print(f'x={x}, n={n} ')
+    if n >= 1:
+        return f'{x}, {n}'
+    else:
+        return f'Erreur : {n} < 1'
 
 if __name__ == "__main__":
-    for (i, j) in enumerate(range(50)):
+    for (i, j) in ((4, 2), (3, 3), (10, 0)):
         print(f'{i}**{j} = {power(i, j)}')
