@@ -1,6 +1,9 @@
 # code utf-8
 
 import copy
+from operator import itemgetter
+import json
+
 
 def tri_custom(liste):
     d = dict()
@@ -15,9 +18,11 @@ def tri_custom(liste):
             p2.append('')
         else:
             p2.append(d1['p2'])
+    
+    all = sorted(list(zip(n, p, p2)),key=itemgetter(1,2))
 
-    all = sorted(list(zip(n, p, p2)))
     for i in all:
+        d.clear()
         d['n'] = i[0]
         d['p'] = i[1]
         if i[2] != '':
@@ -41,18 +46,19 @@ if __name__ == '__main__':
         { 'n': 'Martin', 'p': 'Jean', 'p2': 'Paul'},
         { 'n': 'Dupont', 'p': 'Laura'}
         ])
-    print(r)
+    # print(r)
+    print(json.dumps(r, indent=4))
 
 # attendu
-    #[{ 'n': 'Dupont','p': 'Alex'},
-    # { 'n': 'Dupont', 'p': 'Alex', 'p2': 'Paul'},
-    # { 'n': 'Dupont', 'p': 'Alex', 'p2': 'Pierre'},
-    # { 'n': 'Dupont', 'p': 'Alexandre'},
-    # { 'n': 'Martin', 'p': 'Jean'},
-    # { 'n': 'Martin', 'p': 'Jean', 'p2': 'Paul'},
-    # { 'n': 'Martin', 'p': 'Jean', 'p2': 'Pierre'},
-    # { 'n': 'Martin', 'p': 'Jeanne'},
-    # { 'n': 'Martin', 'p': 'Jeanne', 'p2': 'Marie'},
-    # { 'n': 'Martin', 'p': 'Jeanneot'},
-    # { 'n': 'Dupont', 'p': 'Laura'},
-    # { 'n': 'Dupont', 'p': 'Laura', 'p2': 'Marie'}]
+#     [ { 'n': 'Dupont', 'p': 'Alex'},
+#     { 'n': 'Dupont', 'p': 'Alex', 'p2': 'Paul'},
+#     { 'n': 'Dupont', 'p': 'Alex', 'p2': 'Pierre'},
+#     { 'n': 'Dupont', 'p': 'Alexandre'},
+#     { 'n': 'Martin', 'p': 'Jean'},
+#     { 'n': 'Martin', 'p': 'Jean', 'p2': 'Paul'},
+#     { 'n': 'Martin', 'p': 'Jean', 'p2': 'Pierre'},
+#     { 'n': 'Martin', 'p': 'Jeanne'},
+#     { 'n': 'Martin', 'p': 'Jeanne', 'p2': 'Marie'},
+#     { 'n': 'Martin', 'p': 'Jeanneot'},
+#     { 'n': 'Dupont', 'p': 'Laura'},
+#     { 'n': 'Dupont', 'p': 'Laura', 'p2': 'Marie'}]
