@@ -23,9 +23,7 @@ def doubler_premier_kwds(f, *l, **d):
     elif len(d) == 0:
         return f(l[0]*2, *l[1:])
     else:
-        l1 = list(l)
-        l1[0] = l1[0]*2
-        return f(*l1,**d)
+        return f(*(l[0]*2, *l[1:]),**d)
 
 if __name__ =='__main__':
     print(f'résultat={doubler_premier_kwds(add3, 1, 2, 3)}')
