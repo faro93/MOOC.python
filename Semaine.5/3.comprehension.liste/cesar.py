@@ -3,31 +3,78 @@
 import string
 
 def cesar(clear, key, encode=True):
-    # print(f'clear="{clear}", key="{key}", encode={encode}')
+    # print(f'clear="{clear}", key="{key}", encode={encode}', end=' ')
     if clear not in string.ascii_letters:
         key = 0
         return clear
     else:
         if encode:
-            (clear, key_copy, begin) = init_key(clear, key)
-            return chr(ord(clear)+(ord(key_copy)-ord(begin))+1)
+            (a_orig, a_key) = createListes(clear, key)
+            return a_key[a_orig.index(clear)]
+ 
         else:
-            (clear, key_copy, begin) = init_key(clear, key)
-            return chr(ord(clear)-(ord(key_copy)-ord(begin))-1)
+            (a_orig, a_key) = createListes(clear, key)
+            return a_orig[a_key.index(clear)]
 
-def init_key(clear, key):
-    key_copy = key
+def createListes(clear, key):
     if clear in string.ascii_uppercase:
-        begin = string.ascii_uppercase[0]
-        if key in string.ascii_lowercase:
-            key_copy = key.upper()
-    elif clear in string.ascii_lowercase:
-        begin = string.ascii_lowercase[0]
-        if key in string.ascii_uppercase:
-            key_copy = key.lower()
-    return (clear, key_copy, begin)
+        key = key.upper()
+
+        # liste ordre alphabétique
+        a_orig = [lettre for lettre in string.ascii_uppercase]
+
+        # liste ordre alphabétique décalé de 'key'
+        a_key = [a_orig[(i+1+(ord(key)-ord('A')))-len(a_orig)]
+                    if i+1+(ord(key)-ord('A')) >= len(a_orig)
+                    else a_orig[(i+1+(ord(key)-ord('A')))]
+                for (i, lettre) in enumerate(a_orig)]
+    else:
+        key = key.lower()
+
+        # liste ordre alphabétique
+        a_orig = [lettre for lettre in string.ascii_lowercase]
+
+        # liste ordre alphabétique décalé de 'key'
+        a_key = [a_orig[(i+1+(ord(key)-ord('a')))-len(a_orig)]
+                    if i+1+(ord(key)-ord('a')) >= len(a_orig)
+                    else a_orig[(i+1+(ord(key)-ord('a')))]
+                for (i, lettre) in enumerate(a_orig)]
+    return (a_orig, a_key)
 
 if __name__ == '__main__':
-    for i in [('=', 'C'), ('A', 'C'), ('a', 'C'), ('A', 'c'), ('D', 'C', False), ('A', 'L'), ('D', 'C')]:
-        print(cesar(*i))
-        print()
+    print(cesar('A', 'C'))
+    print(cesar('a', 'C'))
+    print(cesar('A', 'c'))
+    print(cesar('D', 'C', encode=False))
+    print(cesar('A', 'L'))
+    print(cesar('Z', 'L'))
+    print(cesar('a', 'c'))
+    print(cesar('N', 'L'))
+    print(cesar('O', 'L'))
+    print(cesar('D', 'C', encode=False))
+    print(cesar('D', 'c', encode=False))
+    print(cesar('D', 'c', encode=False))
+    print(cesar('a', 'c', True))
+    print(cesar('a', 'c', False))
+    print(cesar('a', 'J', True))
+    print(cesar('a', 'J', False))
+    print(cesar('a', 'T', True))
+    print(cesar('a', 'T', False))
+    print(cesar('a', 'x', True))
+    print(cesar('a', 'x', False))
+    print(cesar('N', 'c', True))
+    print(cesar('N', 'c', False))
+    print(cesar('N', 'J', True))
+    print(cesar('N', 'J', False))
+    print(cesar('N', 'T', True))
+    print(cesar('N', 'T', False))
+    print(cesar('N', 'x', True))
+    print(cesar('N', 'x', False))
+    print(cesar('z', 'c', True))
+    print(cesar('z', 'c', False))
+    print(cesar('z', 'J', True))
+    print(cesar('z', 'J', False))
+    print(cesar('z', 'T', True))
+    print(cesar('z', 'T', False))
+    print(cesar('z', 'x', True))
+    print(cesar('z', 'x', False))
